@@ -1,18 +1,21 @@
 import Foundation
 
-final class CallStation { }
+final class CallStation {
+    var registeredUsers = Set<User>()
+    var allCalls = Set<Call>()
+}
 
 extension CallStation: Station {
     func users() -> [User] {
-        []
+        registeredUsers.map{$0}
     }
     
     func add(user: User) {
-
+        registeredUsers.insert(user)
     }
     
     func remove(user: User) {
-
+        registeredUsers.remove(user)
     }
     
     func execute(action: CallAction) -> CallID? {
@@ -20,7 +23,7 @@ extension CallStation: Station {
     }
     
     func calls() -> [Call] {
-        []
+        allCalls.map{$0}
     }
     
     func calls(user: User) -> [Call] {
